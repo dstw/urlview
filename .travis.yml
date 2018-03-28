@@ -1,0 +1,23 @@
+language: c
+
+os:
+  - linux
+  - osx
+
+compiler:
+  - gcc
+  - clang
+
+matrix:
+    exclude:
+        - os: osx
+          compiler: gcc
+
+install:
+  - ./configure
+  - autoreconf -vfi
+  - make -j`nproc`
+  - sudo make install -j`nproc`
+
+script:
+  - file /usr/local/bin/urlview
